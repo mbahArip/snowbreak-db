@@ -59,13 +59,15 @@ export interface IOperativeBase {
   baseGift: IOperativeBaseGift[];
 }
 export interface IOperativeBaseGift {
+  key: string;
   name: string;
   description: string;
   images: {
     icon: string;
   };
-  price: number;
-  trust: number;
+  rarity?: EnumRarity; // Need to assign this manually
+  price?: number;
+  trust?: number;
 }
 export interface IOperativeBaseStory {
   number: number;
@@ -74,12 +76,15 @@ export interface IOperativeBaseStory {
   trustLevel: number;
 }
 export interface IOperativeSkill {
+  key: string;
   category: EnumCharacterSkillCategory;
-  type: EnumCharacterSkillType;
+  type?: EnumCharacterSkillType;
   name: string;
   description: string;
   rawDescription?: string;
-  icon?: string;
+  images: {
+    icon: string;
+  };
   charge?: number;
   neuralUpgrade?: {
     name: string;

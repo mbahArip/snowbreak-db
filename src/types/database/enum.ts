@@ -1,4 +1,21 @@
-export type EnumRarity = 3 | 4 | 5;
+export type EnumRarity = 0 | 3 | 4 | 5;
+
+export enum EnumCharacterWeaponType {
+  girl01 = "pistol",
+  girl02 = "smg",
+  girl03 = "shotgun",
+  girl04 = "rifle",
+  girl05 = "sniper",
+  girl06 = "pistol",
+  girl07 = "smg",
+  girl08 = "shotgun",
+  girl09 = "",
+  girl10 = "sniper",
+  girl11 = "pistol",
+  girl12 = "smg",
+  girl13 = "shotgun",
+  girl14 = "rifle",
+}
 
 export type EnumCharacterSkillCategory = "standard" | "support" | "ultimate";
 export type EnumCharacterSkillType =

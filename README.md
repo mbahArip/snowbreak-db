@@ -1,38 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Snowbreak-db
 
-## Getting Started
+<div style="text-align:center">
+  <img src="public/img/banner.webp" alt="Banner">
+</div>
 
-First, run the development server:
+Game database for **Snowbreak: Containment Zone**.
+It contains all the information about the game, such as operatives, weapons, and logistics.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Consuming the API
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The API is available at `https://snowbreak-db.mbaharip.com/api/v1/`  
+Rate limit is **250 requests per minute**.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+> All endpoints are prefixed with `/api/v1/`  
+> Spaces in the URL are replaced with dashes (`-`). (Example: `fritia/little sunshine` becomes `fritia/little-sunshine`)  
+> Special characters in the URL are removed. (Example: `acacia/[redacted]` becomes `acacia/redacted`)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Operatives
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- `GET /operatives` - Get all operatives. Will return an array of simplified operative data.
+- `GET /operatives/:name` - Get operatives by name. Will return an array of simplified operative data if there are multiple operatives with the same name.
+- `GET /operatives/:name/:title` - Get specific operative by name and title. Will return detailed data of the operative. (Example: `/acacia/redacted`, `/acacia/kaguya`)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Weapons
 
-## Learn More
+Still in development.
 
-To learn more about Next.js, take a look at the following resources:
+### Logistics
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Still in development.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Deploying your own instance
 
-## Deploy on Vercel
+You can use `Vercel` to deploy your own instance of this API.  
+(You can also use other hosting services, but this guide will only cover Vercel)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Fork this repository
+- Create a new project in Vercel
+- Connect your forked repository to the project
+- Deploy the project
+- Done!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing
+
+You can contribute to this project by adding new data or fixing existing data.
+
+### Adding new data
+
+To add new data, you can create a new file in the `db/:category` directory.  
+Inside each directory already a `_template` folder that you can use as a template.  
+After you're done, you can create a pull request to this repository.  
+I'll review the data before merging it to the main branch.
+
+### Fixing existing data
+
+If you find any errors in the data, you can create a pull request to this repository to fix it.
+Or you can create an issue pointing out the error, and I'll fix it as soon as possible.

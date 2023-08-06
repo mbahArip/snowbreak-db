@@ -37,8 +37,8 @@ export interface IOperativeDetail {
   baseStory?: IOperativeBaseStory[];
   baseGift?: IOperativeBaseGift[];
   skills: IOperativeSkill[];
-  manifests: IOperativeManifest[];
-  deiwosAlignment: IOperativeDeiwosAlignment[];
+  manifests?: IOperativeManifest[];
+  deiwosAlignment?: IOperativeDeiwosAlignment[];
 }
 
 export interface IOperativeOutfit {
@@ -92,9 +92,9 @@ export interface IOperativeSkill {
     description: string;
     rawDescription?: string;
   }[];
-  cooldown: number;
-  sEnergyCost: number;
-  uEnergyCost: number;
+  cooldown?: number;
+  sEnergyCost?: number;
+  uEnergyCost?: number;
   effects?: string[];
   rawEffects?: string[];
 }

@@ -399,13 +399,59 @@ export default async function handler(
               icon: `/img/operatives/${girlId}/skills/${skillId}_icon.png`,
             },
             charge: existingData?.charge || 0,
-            neuralUpgrade: existingData?.neuralUpgrade || [],
-            cooldown: existingData?.cooldown || 0,
-            sEnergyCost: existingData?.sEnergyCost || 0,
-            uEnergyCost: existingData?.uEnergyCost || 0,
+            neuralUpgrade: existingData?.neuralUpgrade || undefined,
+            cooldown: existingData?.cooldown || undefined,
+            sEnergyCost: existingData?.sEnergyCost || undefined,
+            uEnergyCost: existingData?.uEnergyCost || undefined,
             effects: existingData?.effects || [],
             rawEffects: existingData?.rawEffects || [],
           };
+          // Some of the data are set to undefined for now.
+          // I'll update this later when I have the time to do so.
+
+          /**
+           * Skills ID / Key example: 1001101, 1001301, or 1001401
+           * Where:
+           * 10xxxxx = Rarity of the operative. Where 10 is purple and 11 is gold.
+           * xx01xxx = The id of the girl. 01 = Acacia, 02 = Lyfe, etc.
+           * xxxx1xx = Skill type? 1 = Standard skill | 2 = ??? | 3 = Ultimate skill | 4 = Support skill *
+           * xxxxx01 = IDK what this is. Most of the value is 01, only Nita Hands standard skill is 02.
+           *
+           * * For Skill type.
+           * 1 are standard skills or prolly Projectiles skill? <== Need to confirm this.
+           * 2 are found on standard and support skills, It's either skills that deploying aux, kinetic damage, or interrupts skill. <== Need to confirm this.
+           * ex:
+           * - Lyfe Wednesday standard skill (Deploy aux)
+           * - Nita Hands standard skill (Kinetic Dmg)
+           * - Fritia Little Sunshine standard skill (Interrupts)
+           * - Marian Swift support skill (Interrupts) <== This is the only support skill that has this type.
+           * - Haru The Ace standard skill (Kinetic Dmg)
+           * - Cherno Those Two standard skill (Interrupts)
+           * - Fenny Lionheart standard skill (Interrupts)
+           * - Chenxing The Observer standard skill (Deploy aux)
+           *
+           * For now I'll just set the category for 2 as standard skill, since support skill is only Marian Swift.
+           */
+          const skillCategory = skillId.slice(4, 5);
+          switch (skillCategory) {
+            case "1":
+              operativeSkill.category = "standard";
+              break;
+            case "2":
+              operativeSkill.category = "standard";
+              if (girlId === `girl052`) {
+                operativeSkill.category = "support";
+              }
+              break;
+            case "3":
+              operativeSkill.category = "ultimate";
+              break;
+            case "4":
+              operativeSkill.category = "support";
+              break;
+            default:
+              break;
+          }
 
           switch (type) {
             case "name":
@@ -418,6 +464,13 @@ export default async function handler(
               let charges = 0;
 
               // Assign skill variables
+              /**
+               * Is there a better way to assign skill variables?
+               * Can't find any skill variable data inside ripped files.
+               * So I'll just hardcode it for now.
+               *
+               * TODO: Find a better way to assign skill variables.
+               */
               if (newValue.includes("{") && newValue.includes("}")) {
                 const isCurrentGirlVariableExists =
                   skillVariables[girlId as keyof typeof skillVariables];

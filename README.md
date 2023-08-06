@@ -1,8 +1,8 @@
 # Snowbreak-db
 
-<div style="text-align:center">
+<p align="center">
   <img src="public/img/banner.webp" alt="Banner">
-</div>
+</p>
 
 Game database for **Snowbreak: Containment Zone**.
 It contains all the information about the game, such as operatives, weapons, and logistics.

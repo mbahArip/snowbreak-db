@@ -7,6 +7,11 @@
 Game database for **Snowbreak: Containment Zone**.
 It contains all the information about the game, such as operatives, weapons, and logistics.
 
+## Status
+This project will be on hold.  
+Because all string data that contains dynamic value (Like damage, cooldown, etc) seems like it stored on their server.  
+Until i found out how I can get the value, I'm gonna working on another project. (If you know how to get the string dynamic value, please create a new issue or contact me at discord @mbaharip)
+
 ## Consuming the API
 
 The API is available at `https://snowbreak-db.mbaharip.com/api/v1/`  
